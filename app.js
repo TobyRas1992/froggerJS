@@ -2,7 +2,7 @@ const timeLeftDisplay = document.querySelector("#time-left");
 const resultDisplay = document.querySelector("#result");
 const startPauseButton = document.querySelector("#start-pause-button");
 const squares = document.querySelectorAll(".grid div");
-console.log(squares);
+const leftLogs = document.querySelectorAll(".log-left");
 let currentIndex = 76;
 const width = 9;
 
@@ -37,3 +37,33 @@ function moveFrog(e) {
 }
 //listen for key press
 document.addEventListener("keyup", moveFrog);
+
+//Move logs left
+function autoMoveLogs() {
+  leftLogs.forEach((leftLog) => moveLogLeft(leftLog));
+}
+function moveLogLeft(leftLog) {
+  switch (true) {
+    case leftLog.classList.contains("l1"):
+      leftLog.classList.remove("l1");
+      leftLog.classList.add("l2");
+      break;
+    case leftLog.classList.contains("l2"):
+      leftLog.classList.remove("l2");
+      leftLog.classList.add("l3");
+      break;
+    case leftLog.classList.contains("l3"):
+      leftLog.classList.remove("l3");
+      leftLog.classList.add("l4");
+      break;
+    case leftLog.classList.contains("l4"):
+      leftLog.classList.remove("l4");
+      leftLog.classList.add("l5");
+      break;
+    case leftLog.classList.contains("l5"):
+      leftLog.classList.remove("l5");
+      leftLog.classList.add("l1");
+      break;
+  }
+}
+setInterval(autoMoveLogs, 1000);
