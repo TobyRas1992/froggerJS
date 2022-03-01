@@ -7,24 +7,34 @@ let currentIndex = 76;
 const width = 9;
 
 function moveFrog(e) {
+  //required to remove green trail
   squares[currentIndex].classList.remove("frog");
   //handle key press event
   switch (e.key) {
     case "ArrowLeft":
       console.log("move left");
-      currentIndex -= 1;
+      //keep frog inside left grid border
+      if (currentIndex % width !== 0) {
+        currentIndex -= 1;
+      }
       break;
     case "ArrowRight":
       console.log("move right");
-      currentIndex += 1;
+      if (currentIndex % width < width - 1) {
+        currentIndex += 1;
+      }
       break;
     case "ArrowUp":
       console.log("move up");
-      currentIndex -= width;
+      if (currentIndex - width >= 0) {
+        currentIndex -= width;
+      }
       break;
     case "ArrowDown":
       console.log("move down");
-      currentIndex += width;
+      if (currentIndex + width < width * width) {
+        currentIndex += width;
+      }
       break;
   }
   squares[currentIndex].classList.add("frog");
