@@ -42,3 +42,7 @@
 .frog {
   background-color: green;
 }
+
+#reset-button {
+  display: none;
+}

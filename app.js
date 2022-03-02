@@ -1,6 +1,7 @@
 const timeLeftDisplay = document.querySelector("#time-left");
 const resultDisplay = document.querySelector("#result");
 const startPauseButton = document.querySelector("#start-pause-button");
+const resetButton = document.querySelector("#reset-button");
 const squares = document.querySelectorAll(".grid div");
 const leftLogs = document.querySelectorAll(".log-left");
 const rightLogs = document.querySelectorAll(".log-right");
@@ -147,6 +148,7 @@ function lose() {
     clearInterval(outcomeTimerID);
     squares[currentIndex].classList.remove("frog");
     document.removeEventListener("keyup", moveFrog);
+    showResetButton();
   }
 }
 
@@ -156,7 +158,17 @@ function win() {
     clearInterval(timerId);
     clearInterval(outcomeTimerID);
     document.removeEventListener("keyup", moveFrog);
+    showResetButton();
   }
+}
+
+function resetGame() {
+  resetButton.style.display = "none";
+}
+
+function showResetButton() {
+  resetButton.style.display = "block";
+  resetButton.addEventListener("click", resetGame);
 }
 startPauseButton.addEventListener("click", () => {
   if (timerId) {
