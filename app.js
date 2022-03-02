@@ -9,6 +9,7 @@ const carsRight = document.querySelectorAll(".car-right");
 let currentIndex = 76;
 const width = 9;
 let timerId;
+let outcomeTimerID;
 let currentTime = 20;
 function moveFrog(e) {
   //required to remove green trail
@@ -39,8 +40,6 @@ function moveFrog(e) {
   }
   squares[currentIndex].classList.add("frog");
 }
-//listen for key press
-document.addEventListener("keyup", moveFrog);
 
 function autoMoveElements() {
   currentTime -= 1;
@@ -49,7 +48,9 @@ function autoMoveElements() {
   rightLogs.forEach((rightLog) => moveLogRight(rightLog));
   carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
   carsRight.forEach((carRight) => moveCarRight(carRight));
-  //check if lose or win
+}
+
+function checkOutComes() {
   lose();
   win();
 }
@@ -143,6 +144,7 @@ function lose() {
   ) {
     resultDisplay.textContent = "You lose!";
     clearInterval(timerId);
+    clearInterval(outcomeTimerID);
     squares[currentIndex].classList.remove("frog");
     document.removeEventListener("keyup", moveFrog);
   }
@@ -152,13 +154,19 @@ function win() {
   if (squares[currentIndex].classList.contains("ending-block")) {
     resultDisplay.textContent = "You win!";
     clearInterval(timerId);
+    clearInterval(outcomeTimerID);
     document.removeEventListener("keyup", moveFrog);
   }
 }
 startPauseButton.addEventListener("click", () => {
   if (timerId) {
     clearInterval(timerId);
+    clearInterval(outcomeTimerID);
+    timerId = null; //why need for reset?
+    document.removeEventListener("keyup", moveFrog);
   } else {
     timerId = setInterval(autoMoveElements, 1000);
+    outcomeTimerID = setInterval(checkOutComes, 50);
+    document.addEventListener("keyup", moveFrog);
   }
 });
