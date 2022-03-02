@@ -155,4 +155,10 @@ function win() {
     document.removeEventListener("keyup", moveFrog);
   }
 }
-timerId = setInterval(autoMoveElements, 1000);
+startPauseButton.addEventListener("click", () => {
+  if (timerId) {
+    clearInterval(timerId);
+  } else {
+    timerId = setInterval(autoMoveElements, 1000);
+  }
+});
