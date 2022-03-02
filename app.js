@@ -9,6 +9,7 @@ const carsRight = document.querySelectorAll(".car-right");
 let currentIndex = 76;
 const width = 9;
 let timerId;
+let currentTime = 20;
 function moveFrog(e) {
   //required to remove green trail
   squares[currentIndex].classList.remove("frog");
@@ -42,6 +43,8 @@ function moveFrog(e) {
 document.addEventListener("keyup", moveFrog);
 
 function autoMoveElements() {
+  currentTime -= 1;
+  timeLeftDisplay.textContent = currentTime;
   leftLogs.forEach((leftLog) => moveLogLeft(leftLog));
   rightLogs.forEach((rightLog) => moveLogRight(rightLog));
   carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
@@ -135,7 +138,8 @@ function lose() {
   if (
     squares[currentIndex].classList.contains("c1") ||
     squares[currentIndex].classList.contains("l4") ||
-    squares[currentIndex].classList.contains("l5")
+    squares[currentIndex].classList.contains("l5") ||
+    currentTime <= 0
   ) {
     resultDisplay.textContent = "You lose!";
     clearInterval(timerId);
