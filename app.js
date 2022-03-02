@@ -164,6 +164,14 @@ function win() {
 
 function resetGame() {
   resetButton.style.display = "none";
+  //reset game values
+  squares[currentIndex].classList.remove("frog");
+  currentIndex = 76; //frog returns to start
+  squares[currentIndex].classList.add("frog");
+  //reset timer
+  timerId = null;
+  outcomeTimerID = null;
+  currentTime = 20;
 }
 
 function showResetButton() {
