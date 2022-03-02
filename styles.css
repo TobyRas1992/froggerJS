@@ -18,20 +18,10 @@
   background-color: blue;
 }
 
-/* .log-left,
-.log-right {
-  background-color: lightblue;
-} */
-
-.car-left,
-.car-right {
-  background-color: lightgray;
-}
-
 .frog {
   background-color: green;
 }
-
+/* logs */
 .l1,
 .l2,
 .l3 {
@@ -41,4 +31,13 @@
 .l4,
 .l5 {
   background-color: lightblue;
+}
+/* cars */
+.c1 {
+  background-color: black;
+}
+
+.c2,
+.c3 {
+  background-color: lightgray;
 }
